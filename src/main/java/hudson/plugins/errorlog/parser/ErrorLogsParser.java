@@ -60,6 +60,8 @@ public class ErrorLogsParser extends AbstractAnnotationParser {
 
             String bugXPath = "errorlog/file/error";
             digester.addObjectCreate(bugXPath, Error.class);
+            digester.addCallMethod( bugXPath, "setErrorText", 1 );
+            digester.addCallParam( bugXPath, 0 );
             digester.addSetProperties(bugXPath);
             digester.addSetNext(bugXPath, "addError", Error.class.getName());
 
@@ -112,8 +114,7 @@ public class ErrorLogsParser extends AbstractAnnotationParser {
                     String type = StringUtils.substringAfterLast(source, ".");
                     String category = StringUtils.substringAfterLast(StringUtils.substringBeforeLast(source, "."), ".");
 
-                    Warning warning = new Warning(priority, error.getMessage(), StringUtils.capitalize(category),
-                            type, error.getLine(), error.getLine());
+                    Warning warning = new Warning(priority, StringUtils.capitalize(category), type, error);
                     warning.setModuleName(moduleName);
                     warning.setFileName(file.getName());
                     warning.setPackageName(packageName);

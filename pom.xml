@@ -11,7 +11,7 @@
   <artifactId>errorlogs</artifactId>
   <packaging>hpi</packaging>
   <name>Error logs Plug-in</name>
-  <version>3.29-SNAPSHOT</version>
+  <version>3.29</version>
   <url>http://wiki.jenkins-ci.org/x/GYCGAQ</url>
   <description>This plug-in generates the trend report for
     error logs. It is based on checkstyle plugin, changing names to be able to have both at the same project.</description>

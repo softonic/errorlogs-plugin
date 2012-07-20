@@ -71,6 +71,11 @@ public class ErrorLogsParserTest {
                         warning.getMessage());
                 hasChecked = true;
             }
+            if (warning.getPrimaryLineNumber() == 2) {
+                assertTrue("Wrong description detected. found:"+warning.getToolTip(), warning.getToolTip().contains(
+                        "Text content"));
+                hasChecked = true;
+            }
         }
         assertTrue("Warning is not in checkstyle.xml file.", hasChecked);
     }

@@ -19,6 +19,8 @@ public class Warning extends AbstractAnnotation {
     private static final long serialVersionUID = 4171661552905752370L;
     /** Origin of the annotation. */
     public static final String ORIGIN = "errorlog";
+    /** Error object. */
+    private Error error;
 
     /**
      * Creates a new instance of {@link Warning}.
@@ -60,8 +62,32 @@ public class Warning extends AbstractAnnotation {
         this(priority, message, category, type, lineNumber, lineNumber);
     }
 
+    /**
+     * Creates a new instance of {@link Warning}.
+     *
+     * @param priority
+     *            the priority
+     * @param category
+     *            the warning category
+     * @param type
+     *            the identifier of the warning type
+     * @param error
+     *            the Error object
+     */
+    public Warning(final Priority priority, final String category, final String type, Error error) {
+        this(priority, error.getMessage(), category, type, error.getLine(), error.getLine());
+        this.error = error;
+    }
+
     /** {@inheritDoc} */
     public String getToolTip() {
+        if (
+                this.error != null
+                && (this.error.getErrorText() == null ?
+                    "" != null
+                    : !this.error.getErrorText().equals(""))
+        )
+            return "<pre>"+this.error.getErrorText()+"</pre>";
         return ErrorLogsRules.getInstance().getDescription(getType());
     }
 

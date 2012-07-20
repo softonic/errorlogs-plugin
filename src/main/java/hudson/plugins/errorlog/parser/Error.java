@@ -15,6 +15,8 @@ public class Error {
     private String message;
     /** The first line of the warning range. */
     private int line;
+    /** Error full text. */
+    private String errorText;
 // CHECKSTYLE:ON
 
     /**
@@ -71,6 +73,23 @@ public class Error {
         this.message = message;
     }
 
+    /**
+     * Returns the errorText.
+     *
+     * @return the errorText
+     */
+    public String getErrorText() {
+        return errorText;
+    }
+
+    /**
+     * Sets the errorText to the specified value.
+     *
+     * @param message the value to set
+     */
+    public void setErrorText(final String errorText) {
+        this.errorText = errorText;
+    }
     /**
      * Returns the line.
      *
